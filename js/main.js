@@ -1,11 +1,18 @@
 $(function() {
 
   $('button.toggle-popup').on('click', function(event) {
-    $('.popup').addClass('active');
+    $('.popup-wrapper').addClass('active');
   });
 
   $('.popup .exit').on('click', function() {
-    $(this).closest('.popup').removeClass('active');
+    hidePopUp();
+  });
+
+  $('body').on('click', function(event) {
+    event.preventDefault();
+    if ($(event.target).hasClass('popup-wrapper'))
+      hidePopUp();
+    /* Act on the event */
   });
 
   
@@ -24,3 +31,7 @@ $(function() {
       countdown: true
     });
 });
+
+function hidePopUp() {
+  $('.popup-wrapper').removeClass('active');
+}
